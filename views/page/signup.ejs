@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layouts/head.ejs', {title: 'Account', style: `/public/css/acc.css`}) %>
+</head>
+<body>
+    <div id="login-box">
+        <div class="left">
+            <h5><a href="http://localhost:3000/" id="r-home"><i class="fa-solid fa-arrow-left"> Back to home</i></a></h5>
+            <h1>Sign up</h1>
+            <form id="signup-form" method="POST" action="/signup">
+                <input type="text" id="username" name="username" placeholder="Username" />
+                <input type="password" id="password" name="password" placeholder="Password" />
+                <input type="password" id="cf_password" name="cf_password" placeholder="Confirm password" />
+                
+                <button type="submit" id="saveData">Sign up</button>
+            </form>
+        </div>
+        
+        
+        <div id="signin">
+          <h5>Already have account? <a id="signinrdr" signinrdr>Click here to sign in</a></h5>
+        </div>
+    </div>
+    <script type="module" src="../../public/js/main/acc.js"></script>
+    
+    </body>
+    
+</html>
