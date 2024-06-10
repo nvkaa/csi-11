@@ -1,0 +1,53 @@
+<% 
+    const foodItem = locals.foodItem
+    // console.log('home.ejs foodItem:', foodItem);
+%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layouts/head.ejs', {title: 'Affoodable', style: `/public/css/style.css`}) %>
+</head>
+<body>
+    <p foodData></p>
+
+    <!-- desktop view -->
+    <div class="container" id="container">
+        <%- include('../partials/menu.ejs') %>
+
+        <%- include('../partials/foodContainer.ejs') %>
+        
+        <div id="cart">
+            <div class="taste-header">
+                <a class="user">
+                    <!-- <form action="/signup" method="get"> -->
+                        <button type="submit" id="account-btn" acc-btn>
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                        <div class="user-info hide" user-info>
+                            <div class="display-username"><span>You are logged in as ${usn}</span></div>
+                            <div class="change-password"><span>Change password</span></div>
+                            <div class="signout"><span>Sign out</span></div>
+                        </div>
+                    <!-- </form> -->
+                    
+                </a>
+            </div>
+            <div id="category-list">
+                <p class="item-menu">Go For Hunt</p>
+                <div class="border"></div>                
+            </div>
+            <div id="checkout" class="cart-toggle">
+                <p id="total-item">Total Item : </p>
+                <p id="total-price"></p>
+                <p id="delievery">Free delievery on $ 40</p>
+                <button class="cart-btn checkout">Checkout</button>
+            </div>
+        </div>
+        
+        <%- include('../layouts/footer.ejs') %>
+    </div>
+    <script type="module" src="../../public/js/main/profile.js"></script>
+</body>
+</html>

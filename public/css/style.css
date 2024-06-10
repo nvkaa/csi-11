@@ -6,6 +6,20 @@
     font-family: 'Open Sans', sans-serif !important;
 }
 
+.user-info {
+    background-color: aliceblue;
+    padding-inline: 30px;
+    position: absolute;
+    height: 190px;
+    /* display: none; */
+}
+
+.user-info > div {
+    height: max-content;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
 .hide { display: none !important;}
 
 .search-container {
@@ -342,6 +356,7 @@ color: white;
     color: crimson;
     background-color: white;
     font-weight: 100;
+    margin-left: 45%;
 }
 
 #account-btn:hover, #account-btn:hover>i{

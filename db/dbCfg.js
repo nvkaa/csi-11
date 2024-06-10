@@ -26,12 +26,26 @@ const defSql = `INSERT INTO account (usn, pw) VALUES ("${defaultUser.usn}", "${d
 function insertData(sql) {
     const results =  pool.query(sql, (er, rs, fields) => {
         if(er){return console.error('pool.query err:', er);}
-        else {process.exit()}
+        else { 
+            // process.exit()
+        }
     });
 }
 
+function getData(sql) {
+    return new Promise((resolve, reject) => {
+      pool.query(sql, (err, rs, fields) => {
+        if (err) {
+          reject(err); // Reject the promise with the error
+        } else {
+          resolve(rs); // Resolve the promise with the data
+        }
+      });
+    });
+  }
+  
 
   
-insertData(`INSERT INTO account (usn, pw) VALUES ("test1", "1")`);
+// insertData(`INSERT INTO account (usn, pw) VALUES ("test1", "1")`);
 
-module.exports = {insertData}
+module.exports = {insertData, getData}
