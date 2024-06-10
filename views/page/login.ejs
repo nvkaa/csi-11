@@ -1,0 +1,43 @@
+<% 
+    const userData = locals.userData
+    console.log('login.ejs userData:', userData);
+%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layouts/head.ejs', {title: 'Account', style: `/public/css/acc.css`}) %>
+</head>
+<body>
+    <div user-data>
+        <p display-user-data>
+            <span user-data-usn><%=userData.usn%></span>:<span user-data-pw><%=userData.pw%></span>
+        </p>
+    </div>
+  
+    
+    <div id="hidbox" >
+      <div class="lleft">
+        <h1>Sign in</h1>
+        <form action="" method="post">
+          <input type="text" id="l-username" name="l-username" placeholder="Username" />
+          <input type="password" id="l-password" name="l-password" placeholder="Password" />
+          
+          <input type="submit" id="getData" name="signin_submit" value="Sign in"/>
+        </form>
+        
+      </div>
+      <div id="lsignin">
+        <h5>Do not have account? <a href="#" id="signuprdr">Click here to sign up</a></h5>
+        <h5><a href="http://localhost:3000/" id="r-home"><i class="fa-solid fa-arrow-left"></i></a></h5>
+      </div>
+        
+      
+    </div>
+
+    
+    </body>
+    <script type="module" src="../../public/js/main/login.js"></script>
+    
+</html>

@@ -1,0 +1,76 @@
+<% 
+    const foodItem = locals.foodItem
+    // console.log('home.ejs foodItem:', foodItem);
+%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layouts/head.ejs', {title: 'Affoodable', style: `/public/css/style.css`}) %>
+</head>
+<body>
+    <p foodData></p>
+
+    <!-- desktop view -->
+    <div class="container" id="container">
+        <%- include('../partials/menu.ejs') %>
+
+        <%- include('../partials/foodContainer.ejs') %>
+        
+        <%- include('../partials/cart.ejs') %>
+        
+        <%- include('../layouts/footer.ejs') %>
+    </div>
+
+
+    <!-- mobile view -->
+    <div id="mobile-view" class="mobile-view">
+        <div class="mobile-top">
+            <div class="logo-box">
+                <img src="/public/images/foodielogo.png" alt="" id="logo">
+                <i class="fa fa-map-marker your-address" id="m-add-address"> Your Address</i>
+            </div>
+            <div class="top-menu">
+                <i class="fa fa-search"></i>
+                <i class="fa fa-tag"></i>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa fa-cart-plus" id="m-cart-plus"> 0</i>
+            </div>
+        </div>
+        
+        <div class="item-container">
+            <div class="category-header" id="category-header">  
+            </div>
+
+            <div id="food-items" class="food-items">
+                <div id="biryani" class="m-biryani">
+                    <p id="category-name">Biryani</p>    
+                </div>
+                <div id="chicken" class="m-chicken">
+                    <p id="category-name">Chicken Delicious</p>    
+                </div>
+                <div id="paneer" class="m-paneer">
+                    <p id="category-name">Paneer Mania</p>
+                </div>
+                <div id="vegetable" class="m-vegetable">
+                    <p id="category-name">Pure Veg Dishes</p> 
+                </div>
+                <div id="chinese" class="m-chinese">
+                    <p id="category-name">Chinese Corner</p> 
+                </div>
+                <div id="south-indian" class="m-south-indian">
+                    <p id="category-name">South Indian</p>
+                </div>
+            </div>            
+        </div>
+
+        <div class="mobile-footer">
+            <p>Home</p>
+            <p>Cart</p>
+            <p>offers</p>
+            <p>orders</p>
+        </div>
+    </div>
+</body>
+</html>
