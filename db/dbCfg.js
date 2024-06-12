@@ -21,7 +21,7 @@ const defaultUser = {
     pw: "1",
 };
 
-const defSql = `INSERT INTO account (usn, pw) VALUES ("${defaultUser.usn}", "${defaultUser.pw}")`;
+const defSql = `INSERT INTO account (username, password) VALUES ("${defaultUser.usn}", "${defaultUser.pw}")`;
 
 function insertData(sql) {
     const results =  pool.query(sql, (er, rs, fields) => {
@@ -46,6 +46,7 @@ function getData(sql) {
   
 
   
-// insertData(`INSERT INTO account (usn, pw) VALUES ("test1", "1")`);
+// insertData(`INSERT INTO account (username, password) VALUES ("test1", "1")`);
+// insertData(defSql);
 
 module.exports = {insertData, getData}

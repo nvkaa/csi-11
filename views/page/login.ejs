@@ -21,7 +21,6 @@
     <div id="hidbox" >
       <div class="lleft">
         <h1>Sign in</h1>
-        <form action="/check-login" method="post">
           <input type="text" id="l-username" name="username" placeholder="Username" />
           <input type="password" id="l-password" name="password" placeholder="Password" />
           <% 
@@ -30,13 +29,11 @@
           }
           %>
           
-          <input type="submit" id="getData" name="signin_submit" value="Sign in"/>
-        </form>
+          <input id="getData" name="signin_submit" value="Sign in"/>
         
       </div>
       <div id="lsignin">
-        <h5>Do not have account? <a href="#" id="signuprdr">Click here to sign up</a></h5>
-        <h5><a href="http://localhost:3000/" id="r-home"><i class="fa-solid fa-arrow-left"></i></a></h5>
+        <h5>Do not have account? <a href="http://localhost:3000/" id="signuprdr">Click here to sign up</a></h5>
       </div>
         
       

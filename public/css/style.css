@@ -6,18 +6,27 @@
     font-family: 'Open Sans', sans-serif !important;
 }
 
-.user-info {
-    background-color: aliceblue;
-    padding-inline: 30px;
-    position: absolute;
-    height: 190px;
-    /* display: none; */
+#usn{ 
+    font-weight: 300;
+    font-style: italic;
 }
 
-.user-info > div {
-    height: max-content;
-    margin-top: 30px;
+.user-info {
+    /* padding-inline: 30px; */
+    position: absolute;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info > button {
+    background-color: aliceblue;
+
+    height: 63px;
+    width: inherit;
+    /* margin-top: 30px; */
     font-weight: bold;
+
 }
 
 .hide { display: none !important;}

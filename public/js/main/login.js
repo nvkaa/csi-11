@@ -19,16 +19,16 @@ const checkBtn = document.querySelector('#getData')
 checkBtn.addEventListener('click', () => {
     const checkUsn = document.querySelector('#l-username').value
     const checkPw = document.querySelector('#l-password').value
-    console.log(checkUsn, checkPw);
-    axios.post('/check-login') // Replace with your actual endpoint
+    // console.log(checkUsn, checkPw);
+    axios.post('/check-login', {checkUsn, checkPw}) // Replace with your actual endpoint
         .then(response => {
-            if (response.status === 302) {
-                // window.location.href = '/login';
-                alert('username or password incorrect')
-            }
+            // console.log(response);
+            if(response.data == 'incorrect username or password'){
+                alert(response.data);
+            } else { window.location.href = '/home'}
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-    });
+        });
 })
 

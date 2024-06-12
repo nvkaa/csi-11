@@ -3,6 +3,24 @@ import {Trie, TrieNode} from '../modules/trie.js'
 import {Menu, MenuItem} from '../modules/binaryTree.js'
 import * as displayItems from  '../modules/displayItems.js'
 
+
+// const cookie = document.cookie.split(';')
+// const sessionId = document.cookie.split(';').find((row) => row.startsWith(" sid="))?.split("=")[1];
+// sessionStorage.setItem('isUsernameFetched', false)
+// var isUsernameFetched = sessionStorage.getItem('isUsernameFetched')
+// if(!isUsernameFetched){
+const cookieUsn = document.cookie.split(';').find((row) => row.startsWith(" usn="))?.split("=")[1];
+sessionStorage.setItem('username', cookieUsn)
+// sessionStorage.setItem('isUsernameFetched', true)
+document.cookie = `usn=${cookieUsn};expires=${new Date(Date.now()-1)}`    
+
+// }
+const usn = sessionStorage.getItem('username')
+console.log(usn);
+const getusn = document.querySelector('#usn')
+getusn.innerHTML=`${usn}`
+
+
 const fetchFoodItem = await axios.get('/food-item')
 const foodItem = fetchFoodItem.data
 // console.log('script.js foodItem', foodItem);
@@ -237,4 +255,18 @@ searchContainer.addEventListener('focusout', (e) => {
 const homeBtn = document.querySelector('[home]')
 homeBtn.addEventListener('click', (e) => {
     window.scrollTo({top: 0, behavior: 'smooth'})
+})
+
+const accBtn = document.querySelector('[acc-btn]')
+const userInfo = document.querySelector('[user-info]')
+// flag = false
+accBtn.addEventListener('click', () => {
+    userInfo.classList.toggle('hide')
+})
+
+
+const signoutBtn = document.querySelector('[signout]')
+signoutBtn.addEventListener('click', () => {
+    axios.post('/signout')    
+    window.location.href = '/login'
 })

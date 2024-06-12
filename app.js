@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);    
 const axios = require('axios')
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -16,11 +17,17 @@ app.use(bodyParser.json())
 
 
 app.set('trust proxy', 1) // trust first proxy
+
+// const mongoUri = 'mongodb+srv://nvka:nvkaasb1@session-management.mpyccyt.mongodb.net/';
 app.use(session({ 
     secret: 'cat',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true, maxAge: 60000}
+    cookie: { secure: false, maxAge: 60000},
+    // store: MongoStore.create({
+    //     mongoUrl,
+    //     collection: 'session' 
+    // })
 }))
 
 
@@ -50,12 +57,10 @@ app.use('/public', express.static('public', { 'Content-Type': 'text/css' }));
 app.get('/food-item', (req, res) => res.send(foodItem))
 
 app.get('/', (req, res) => {
-    res.render('./page/home.ejs', {foodItem});
-});
-
-app.get('/signup', (req, res) => {
     res.render('./page/signup.ejs'); 
 });
+
+
 
 app.get('/login', (req, res) => {
     res.render('./page/login.ejs')
@@ -70,12 +75,9 @@ app.post("/login-redirect", (req, res) => {
 app.post('/save-register', async (req, res) => {
     const { username, password, cf_password} = req.body
     if(username && password && username != password && password == cf_password){
-        const userData = {username, password}
-        // const data = db.getData(`select * from account where usn = "${username}" and pw = "${password}"`)
-        const data = await db.getData(`select * from account where usn = "${username}" and pw = "${password}"`);
+        const data = await db.getData(`select * from account where username = "${username}" and password = "${password}"`);
         if (data.length === 0) {
-            db.insertData(`insert into account (usn, pw) values ("${username}","${password}")`)
-            // req.session.userData = userData;
+            db.insertData(`insert into account (username, password) values ("${username}","${password}")`)
             res.redirect('/login');
         } else {
             res.send("username is already used");
@@ -85,27 +87,54 @@ app.post('/save-register', async (req, res) => {
 });
 
 app.post('/check-login', async (req,res) => {
-    const {username, password} = req.body
-    console.log(username, password);
-    const allAccounts = await db.getData(`select * from account`);
-    console.log(allAccounts);
+    const sessionId = req.session.id
+    const {checkUsn, checkPw} = req.body
 
-    const data = await db.getData(`select * from account where usn = "${username}" and pw = "${password}"`);
-    console.log(data)
+    const data = await db.getData(`select * from account where username = "${checkUsn}" and password = "${checkPw}"`);
+    console.log('app.89', data);
 
-    if (data.length === 0 || password != data[0].pw) {
-        // res.send("res.send: username or password incorrect");
-        // res.send("Login Unccesfully!")
-        console.log("Can't loggin")
-        // res.redirect('/login');
+    if (data.length === 0 || checkPw != data[0].password) {
+        res.send('incorrect username or password');
     } else {
         console.log("login succesful");
-        res.redirect("/")
+        req.session.user = {uid: data[0].user_id, sid: sessionId, user: checkUsn}
+        res.cookie('sid', sessionId, { httpOnly: true });
+        res.cookie('usn', checkUsn);
+        res.redirect("/home")
     }
 })
 
+const checkSession = (req, res, next) => {
+    if (!req.session.user) {
+      return res.redirect('/login');
+    }
+    next();
+};
+
+app.get('/home',checkSession, (req, res) => {
+    res.render('./page/home.ejs');
+});
+
 app.get('/profile', (req, res) => {
     res.render('./page/profile.ejs')
+})
+
+app.post('/signout', (req, res) => {
+    // const sid = req.headers.cookie.split(';').find((row) => row.startsWith(" sid="))?.split("=")[1];
+    // console.log('/signout', req.session[`${sid}`]);
+    req.session.destroy((err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send('Error logging out');
+        }
+        res.redirect('/login');
+    });
+
+    // req.sessionStore.sessionModel.findAll()
+    // .then(sessions => sessions.map(sess => JSON.parse(sess.dataValues.data)))
+    // .then((sessions) => {
+    //   console.log(sessions)
+    // })
 })
 
 
