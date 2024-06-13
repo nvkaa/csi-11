@@ -2,8 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
 
+body{background-color: whitesmoke !important;}
+
 .ur-address, #cart-plus, .search, .offers, .acc, .atw, input::placeholder{
     font-family: 'Open Sans', sans-serif !important;
+}
+
+.fa-square-plus{
+    font-size: 1.25em;
+    vertical-align: -.075em;
 }
 
 #usn{ 
@@ -14,6 +21,7 @@
 .user-info {
     /* padding-inline: 30px; */
     position: absolute;
+    right: 50px;
     height: 190px;
     display: flex;
     flex-direction: column;
@@ -108,7 +116,14 @@ body{
 }
 #menu{
     background: whitesmoke;
+    /* width: 70%; */
 }
+
+#food-container{
+    margin-left: -60px;
+    height: max-content;
+}
+
 .title{
     padding: 0 30px;
 }
@@ -154,7 +169,7 @@ body{
 }
 #header{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding-top: 40px;
     padding-bottom: 10px;
@@ -197,9 +212,6 @@ body{
     background: none;
     color: rosybrown;
     padding: 0 5px;
-}
-.food-items{
-    display: none;
 }
 .cart-toggle, .wish-toggle{
     display: block;
@@ -268,15 +280,15 @@ body{
     font-size: 14px;
     border-radius: 15px;
 }
-.fa-heart{
+.fa-square-plus{
     padding: 6px;
     border-radius: 50%;
     background: white;
     cursor: pointer;
 }
-.toggle-heart{
-background: orangered;
-color: white; 
+.toggle-square-plus{
+    background: orangered;
+    color: white; 
 }
 #item-card img{
     width: 120px;
@@ -308,8 +320,8 @@ color: white;
 }
 #cart-page, #wish-page{
     background: white;
-    margin: 40px 10px;
-    margin-right: 50px;
+    /* margin: 40px 10px;
+    margin-right: 50px; */
     padding: 20px 30px;
     padding-bottom: 30px;
     position: relative;
@@ -318,15 +330,6 @@ color: white;
     font-size: 35px;
     margin: 0;
     color: indianred;
-}
-#cart-page table, #wish-page table{
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-}
-#cart-page table thead td, #wish-page table thead td{
-    font-size: 25px;
-    padding-bottom: 10px;
 }
 
 .cart-btn{
@@ -342,23 +345,10 @@ color: white;
     margin: 15px 0;
     cursor: pointer;
 }
-#cart-page table tbody td,
 #wish-page table tbody td{
     padding: 10px 0;
     font-size: 20px;
 }
-#cart-page table tbody button{
-    outline: none;
-    border: none;
-    font-size: 16px;
-    background: none;
-    background: lightcoral;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-    margin: 0 5px;
-}
-
 #account-btn {
     border: 1px solid crimson ;
     border-radius: 350px;
@@ -379,27 +369,50 @@ color: white;
     /* background-color: white; */
 }
 
-#cart-page table tbody img, #wish-page table tbody img{
+#wish-page table tbody img{
     width: 75px;
     height: 75px;
     border-radius: 50%;
 }
+
+#a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#b {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+}
+
+.checkout{display: block}
+
 #checkout{
-    text-align: center;
-    margin: 40px auto;
+    /* display: flex;
+    flex-direction: column; */
+    text-align: left;
     border-radius: 5px;
     background: white;
     padding: 10px 20px;
 }
 #checkout p{
-    margin: 15px 0;
+    margin: 0px !important;
     float: left;
 }
+
+table, th, td {
+    border: 1px solid;
+    padding: 10px;
+}
+
 #total-price,#total-item{
     font-size: 25px;
     color: indianred;
 }
-#delievery{
+#delivery{
+    
     font-size: 20px;
     color: limegreen;
 }
@@ -407,6 +420,7 @@ color: white;
     background: whitesmoke;
     padding-right: 30px;
     overflow-y: scroll;
+    margin-left: -100px;
 }
 
 .item-menu{

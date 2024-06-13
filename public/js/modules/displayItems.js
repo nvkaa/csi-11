@@ -1,6 +1,3 @@
-
-
-
 function displayItems(foodItem){
     var biryani= document.getElementById('biryani');
     var paneer=  document.getElementById('paneer');;
@@ -22,7 +19,6 @@ function displayItems(foodItem){
         
         var itemCard= document.createElement('div');
         itemCard.setAttribute('id','item-card')
-        // itemCard.setAttribute('class', 'hide')
 
         var cardTop= document.createElement('div');
         cardTop.setAttribute('id','card-top');
@@ -32,14 +28,14 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var heart= document.createElement('i');
-        heart.setAttribute('class','fa-regular fa-heart add-to-cart');
-        heart.setAttribute('id',item.id)
+        var square_plus = document.createElement('i');
+        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
+        square_plus.setAttribute('id',item.id)
 
         var wish = document.createElement('i');
         wish.setAttribute('class','fa-regular fa-star add-to-wish');
         wish.setAttribute('id','wish');
-                var wt = document.createElement('span');
+        var wt = document.createElement('span');
         wt.setAttribute('class','atw');
         wt.innerText= 'Add to wishlist';
 
@@ -48,7 +44,7 @@ function displayItems(foodItem){
 
         cardTop.appendChild(star);
         // cardTop.appendChild(wish);
-        cardTop.appendChild(heart);
+        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -85,9 +81,9 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var heart= document.createElement('i');
-        heart.setAttribute('class','fa-regular fa-heart add-to-cart');
-        heart.setAttribute('id',item.id)
+        var square_plus= document.createElement('i');
+        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
+        square_plus.setAttribute('id',item.id)
 
         var wish = document.createElement('i');
         wish.setAttribute('class','fa-regular fa-star add-to-wish');
@@ -99,7 +95,7 @@ function displayItems(foodItem){
         wish.appendChild(wt)
 
         cardTop.appendChild(star);
-        cardTop.appendChild(heart);
+        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -135,9 +131,9 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var heart= document.createElement('i');
-        heart.setAttribute('class','fa-regular fa-heart add-to-cart');
-        heart.setAttribute('id',item.id)
+        var square_plus = document.createElement('i');
+        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
+        square_plus.setAttribute('id',item.id)
 
         var wish = document.createElement('i');
         wish.setAttribute('class','fa-regular fa-star add-to-wish');
@@ -149,7 +145,7 @@ function displayItems(foodItem){
         wish.appendChild(wt)
 
         cardTop.appendChild(star);
-        cardTop.appendChild(heart);
+        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -185,9 +181,9 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var heart= document.createElement('i');
-        heart.setAttribute('class','fa-regular fa-heart add-to-cart');
-        heart.setAttribute('id',item.id)
+        var square_plus = document.createElement('i');
+        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
+        square_plus.setAttribute('id',item.id)
 
         var wish = document.createElement('i');
         wish.setAttribute('class','fa-regular fa-star add-to-wish');
@@ -199,7 +195,7 @@ function displayItems(foodItem){
         wish.appendChild(wt)
 
         cardTop.appendChild(star);
-        cardTop.appendChild(heart);
+        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -236,9 +232,9 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var heart= document.createElement('i');
-        heart.setAttribute('class','fa-regular fa-heart add-to-cart');
-        heart.setAttribute('id',item.id)
+        var square_plus = document.createElement('i');
+        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
+        square_plus.setAttribute('id',item.id)
 
         var wish = document.createElement('i');
         wish.setAttribute('class','fa-regular fa-star add-to-wish');
@@ -250,7 +246,7 @@ function displayItems(foodItem){
         wish.appendChild(wt)
 
         cardTop.appendChild(star);
-        cardTop.appendChild(heart);
+        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -287,9 +283,9 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var heart= document.createElement('i');
-        heart.setAttribute('class','fa-regular fa-heart add-to-cart');
-        heart.setAttribute('id',item.id)
+        var square_plus = document.createElement('i');
+        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
+        square_plus.setAttribute('id',item.id)
 
         var wish = document.createElement('i');
         wish.setAttribute('class','fa-regular fa-star add-to-wish');
@@ -301,7 +297,7 @@ function displayItems(foodItem){
         wish.appendChild(wt)
 
         cardTop.appendChild(star);
-        cardTop.appendChild(heart);
+        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -327,8 +323,9 @@ function displayItems(foodItem){
 }
 
 function selectTaste(foodItem){
-    const vegData= [...new Map(foodItem.map(item=> [item['category'],item])).values()];
     var categoryList= document.getElementById('category-list');
+    const vegData= [...new Map(foodItem.map(item=> [item['category'],item])).values()];
+    
 
     vegData.map(item=>{
         // console.log(item)
@@ -352,12 +349,12 @@ function selectTaste(foodItem){
     })
 }
 
+var cartData= [];
+function addToCart(foodItem, item){
+    // console.log('called to addToCart');
 
-
-function addToCart(){
-    var cartData= [];
     
-    var itemToAdd= this.parentNode.nextSibling.nextSibling.innerText;
+    var itemToAdd= item.parentNode.nextSibling.nextSibling.innerText;
     // console.log(itemToAdd);
     var itemObj= foodItem.find( element => element.name==itemToAdd );
     // console.log(itemObj);
@@ -365,10 +362,10 @@ function addToCart(){
     var index= cartData.indexOf(itemObj);
     // console.log(index);
     if(index=== -1){
-        this.classList.remove('fa-regular');
-        this.classList.add('fa-solid');
+        item.classList.remove('fa-regular');
+        item.classList.add('fa-solid');
         cartData= [...cartData,itemObj];
-        console.log(cartData);
+        // console.log(cartData);
         localStorage.setItem("cart-data", JSON.stringify(cartData))
     }
     else if (index > -1){
@@ -384,6 +381,7 @@ function addToCart(){
         // alert("Already added to cart");
     }
     
+    // console.log('added to cart');
     document.getElementById('cart-plus').innerText=
     ' ' + cartData.length + ' Items';
     document.getElementById('m-cart-plus').innerText=
@@ -396,16 +394,12 @@ function addToCart(){
 
 function cartItems(){
     var tableBody=  document.getElementById('table-body');
+    console.log(tableBody);
     tableBody.innerHTML= '';
 
     cartData.map(item=> {
         var tableRow= document.createElement('tr');
         
-        var rowData1= document.createElement('td');
-        var img= document.createElement('img');
-        img.src= item.img;
-        rowData1.appendChild(img);
-    
         var rowData2= document.createElement('td');
         rowData2.innerText= item.name;
         
@@ -426,7 +420,6 @@ function cartItems(){
         var rowData4= document.createElement('td');
         rowData4.innerText= item.price;
     
-        tableRow.appendChild(rowData1);
         tableRow.appendChild(rowData2);
         tableRow.appendChild(rowData3);
         tableRow.appendChild(rowData4);
@@ -442,98 +435,98 @@ function cartItems(){
     })
 }
 
-var wishData = [];
-function addToWish(){
-    //console.log(this);
-    var itemToAdd= this.previousSibling.previousSibling.innerText;
-    // console.log(itemToAdd);
-    var itemObj= foodItem.find(element=>element.name==itemToAdd);
-    // console.log(wishData);
-    var index= wishData.indexOf(itemObj);
-    if(index=== -1){
-        this.classList.remove('fa-regular');
-        this.classList.add('fa-solid');
-        wishData= [...wishData,itemObj];
-        console.log(wishData);
-        // 
-    }
-    else if (index > -1){
-        // console.log(index);
-        this.classList.add('fa-regular');
-        this.classList.remove('fa-solid');
-        // console.log(cartData.length);
-        wishData.splice(index, 1);
-        // console.log(wishData);
+// var wishData = [];
+// function addToWish(){
+//     //console.log(this);
+//     var itemToAdd= this.previousSibling.previousSibling.innerText;
+//     // console.log(itemToAdd);
+//     var itemObj= foodItem.find(element=>element.name==itemToAdd);
+//     // console.log(wishData);
+//     var index= wishData.indexOf(itemObj);
+//     if(index=== -1){
+//         this.classList.remove('fa-regular');
+//         this.classList.add('fa-solid');
+//         wishData= [...wishData,itemObj];
+//         console.log(wishData);
+//         // 
+//     }
+//     else if (index > -1){
+//         // console.log(index);
+//         this.classList.add('fa-regular');
+//         this.classList.remove('fa-solid');
+//         // console.log(cartData.length);
+//         wishData.splice(index, 1);
+//         // console.log(wishData);
         
         
         
-        // alert("Already added to cart");
-    }
-    // document.getElementById('wish-plus').innerText=
-    // ' ' + wishData.length + ' Items';
-    // document.getElementById('m-cart-plus').innerText=
-    // ' ' + wishData.length;
-    console.log(wishData);
-    // totalAmount();
-    // cartItems();
-    wishItems();
-}
+//         // alert("Already added to cart");
+//     }
+//     // document.getElementById('wish-plus').innerText=
+//     // ' ' + wishData.length + ' Items';
+//     // document.getElementById('m-cart-plus').innerText=
+//     // ' ' + wishData.length;
+//     console.log(wishData);
+//     // totalAmount();
+//     // cartItems();
+//     wishItems();
+// }
 
-function wishItems(){
-    // alert('a')
-    var tableBody=  document.getElementById('t-body');
-    // console.log(tableBody.innerHTML);
-    tableBody.innerHTML= '';
+// function wishItems(){
+//     // alert('a')
+//     var tableBody=  document.getElementById('t-body');
+//     // console.log(tableBody.innerHTML);
+//     tableBody.innerHTML= '';
 
-    wishData.map(item=> {
-        var tableRow= document.createElement('tr');
+//     wishData.map(item=> {
+//         var tableRow= document.createElement('tr');
         
-        var rowData1= document.createElement('td');
-        var img= document.createElement('img');
-        img.src= item.img;
-        rowData1.appendChild(img);
+//         var rowData1= document.createElement('td');
+//         var img= document.createElement('img');
+//         img.src= item.img;
+//         rowData1.appendChild(img);
     
-        var rowData2= document.createElement('td');
-        rowData2.innerText= item.name;
+//         var rowData2= document.createElement('td');
+//         rowData2.innerText= item.name;
         
-        // var rowData3= document.createElement('td');
-        // var btn1= document.createElement('button');
-        // btn1.setAttribute('class','decrease-item');
-        // btn1.innerText= '-';
-        // var span= document.createElement('span');
-        // span.innerText= item.quantity;
-        // var btn2= document.createElement('button');
-        // btn2.setAttribute('class','increase-item');
-        // btn2.innerText= '+';
+//         // var rowData3= document.createElement('td');
+//         // var btn1= document.createElement('button');
+//         // btn1.setAttribute('class','decrease-item');
+//         // btn1.innerText= '-';
+//         // var span= document.createElement('span');
+//         // span.innerText= item.quantity;
+//         // var btn2= document.createElement('button');
+//         // btn2.setAttribute('class','increase-item');
+//         // btn2.innerText= '+';
         
-        // rowData3.appendChild(btn1);
-        // rowData3.appendChild(span);
-        // rowData3.appendChild(btn2);
+//         // rowData3.appendChild(btn1);
+//         // rowData3.appendChild(span);
+//         // rowData3.appendChild(btn2);
     
-        var rowData3= document.createElement('td');
-        rowData3.innerText= item.price;
+//         var rowData3= document.createElement('td');
+//         rowData3.innerText= item.price;
     
-        tableRow.appendChild(rowData1);
-        tableRow.appendChild(rowData2);
-        tableRow.appendChild(rowData3);
-        // tableRow.appendChild(rowData4);
+//         tableRow.appendChild(rowData1);
+//         tableRow.appendChild(rowData2);
+//         tableRow.appendChild(rowData3);
+//         // tableRow.appendChild(rowData4);
     
-        tableBody.appendChild(tableRow);
-    })
-    // document.querySelectorAll('.increase-item').forEach(item=>{
-    //     item.addEventListener('click',incrementItem)
-    // })
+//         tableBody.appendChild(tableRow);
+//     })
+//     // document.querySelectorAll('.increase-item').forEach(item=>{
+//     //     item.addEventListener('click',incrementItem)
+//     // })
 
-    // document.querySelectorAll('.decrease-item').forEach(item=>{
-    //     item.addEventListener('click',decrementItem)
-    // })
-}
+//     // document.querySelectorAll('.decrease-item').forEach(item=>{
+//     //     item.addEventListener('click',decrementItem)
+//     // })
+// }
 
 
 function incrementItem(){
-    let itemToInc= this.parentNode.previousSibling.innerText;
+    let itemToInc = this.parentNode.previousSibling.innerText;
     console.log(itemToInc)
-    var incObj= cartData.find(element=>element.name==itemToInc);
+    var incObj= cartData.find(element=>element.name == itemToInc);
     incObj.quantity+=1;
     
     currPrice= (incObj.price*incObj.quantity - incObj.price*(incObj.quantity-1))/(incObj.quantity-1);
@@ -544,9 +537,10 @@ function incrementItem(){
 
 var currPrice= 0;
 function decrementItem(){
-    let itemToInc= this.parentNode.previousSibling.innerText;
-    let decObj= cartData.find(element=>element.name==itemToInc);
-    let ind= cartData.indexOf(decObj);
+    let itemToDec = this.parentNode.previousSibling.innerText;
+    let decObj = cartData.find(element=>element.name==itemToDec);
+    // console.log(decObj);
+    let ind = cartData.indexOf(decObj);
     if(decObj.quantity >1){
         currPrice= (decObj.price*decObj.quantity - decObj.price*(decObj.quantity-1))/(decObj.quantity);
         decObj.quantity-= 1;
@@ -558,17 +552,6 @@ function decrementItem(){
         cartData.splice(ind,1);
         document.getElementById('cart-plus').innerText= ' ' + cartData.length + ' Items';
         document.getElementById('m-cart-plus').innerText= ' ' + cartData.length;
-        if(cartData.length < 1 && flag){
-            document.getElementById('food-items').classList.toggle('food-items');
-            document.getElementById('category-list').classList.toggle('food-items');
-            document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
-            document.getElementById('cart-page').classList.toggle('cart-toggle');
-            document.getElementById('category-header').classList.toggle('toggle-category');
-            document.getElementById('checkout').classList.toggle('cart-toggle');
-            flag= true;
-            alert("Currently no item in cart!");
-            // console.log(flag)
-        }
     }
     totalAmount()
     cartItems()
@@ -581,11 +564,66 @@ function totalAmount(){
     })
     document.getElementById('total-item').innerText= 'Total Item : ' + cartData.length;
     document.getElementById('total-price').innerText= 'Total Price : $ ' + sum;
-    document.getElementById('m-total-amount').innerText= 'Total Price : $ ' + sum;
+    // document.getElementById('m-total-amount').innerText= 'Total Price : $ ' + sum;
 }
+
+document.getElementById('cart-plus').addEventListener('click', cartToggle);
+document.getElementById('m-cart-plus').addEventListener('click', cartToggle);
+
+// document.getElementById('dispWish').addEventListener('click', wishToggle);
+
+function cartToggle(){
+
+    // document.getElementById('food-items').classList.toggle('food-items');
+    // document.getElementById('category-list').classList.toggle('food-items');
+    document.getElementById('checkout').classList.toggle('cart-toggle');
+
+    
+    document.getElementById('category-header').classList.toggle('toggle-category');
+    document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
+
+}
+
+// console.log(wishData);
+// function wishToggle(){
+//     // if(display == false){
+//         document.getElementById('food-items').classList.toggle('food-items');
+//         document.getElementById('category-list').classList.toggle('food-items');
+//         document.getElementById('category-header').classList.toggle('toggle-category');
+//         // document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
+//         document.getElementById('wish-page').classList.toggle('wish-toggle');
+//         document.getElementById('checkout').classList.toggle('wish-toggle');
+//         display = !display;
+//         console.log(display)
+//     // }
+//     // else{
+//     //     document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
+//     //     document.getElementById('cart-page').classList.toggle('cart-toggle');
+//     //     document.getElementById('wish-page').classList.toggle('wish-toggle');
+//     //     document.getElementById('checkout').classList.toggle('cart-toggle');
+//     // }
+    
+// }
+
+
+
+function checkout(){
+    // alert('Order Success! Pay your order at the store')
+    // window.location.reload()
+    console.log('generating bill for:', cartData);
+    axios.post('/checkout', cartData)
+}
+
+
+
 
 export {
     displayItems,
     selectTaste,
-    addToCart, addToWish
+    // addToWish, 
+    addToCart,
+    cartToggle, cartItems,
+    incrementItem, decrementItem,
+    totalAmount,
+    checkout
 }

@@ -4,20 +4,13 @@ import {Menu, MenuItem} from '../modules/binaryTree.js'
 import * as displayItems from  '../modules/displayItems.js'
 
 
-// const cookie = document.cookie.split(';')
-// const sessionId = document.cookie.split(';').find((row) => row.startsWith(" sid="))?.split("=")[1];
-// sessionStorage.setItem('isUsernameFetched', false)
-// var isUsernameFetched = sessionStorage.getItem('isUsernameFetched')
-// if(!isUsernameFetched){
 const cookieUsn = document.cookie.split(';').find((row) => row.startsWith(" usn="))?.split("=")[1];
 sessionStorage.setItem('username', cookieUsn)
-// sessionStorage.setItem('isUsernameFetched', true)
 document.cookie = `usn=${cookieUsn};expires=${new Date(Date.now()-1)}`    
 
-// }
 const usn = sessionStorage.getItem('username')
-console.log(usn);
 const getusn = document.querySelector('#usn')
+// console.log(getusn);
 getusn.innerHTML=`${usn}`
 
 
@@ -29,78 +22,8 @@ const foodItem = fetchFoodItem.data
 displayItems.displayItems(foodItem)
 displayItems.selectTaste(foodItem)
 
-
-
-document.querySelectorAll('.add-to-cart').forEach(item=>{
-    item.addEventListener('click', displayItems.addToCart)
-})
-
-
-
-document.getElementById('cart-plus').addEventListener('click',cartToggle);
-document.getElementById('m-cart-plus').addEventListener('click',cartToggle);
-
-document.getElementById('dispWish').addEventListener('click', wishToggle);
-
-
-var display = false;
-function cartToggle(){
-    if(cartData.length > 0){
-        document.getElementById('food-items').classList.toggle('food-items');
-        document.getElementById('category-list').classList.toggle('food-items');
-        document.getElementById('category-header').classList.toggle('toggle-category');
-        document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
-        document.getElementById('cart-page').classList.toggle('cart-toggle');
-        document.getElementById('checkout').classList.toggle('cart-toggle');
-
-        // document.getElementById('food-items').display='none'
-        // document.getElementById('category-list').classList.toggle('food-items');
-        // document.getElementById('category-header').classList.toggle('toggle-category');
-        // document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
-        // document.getElementById('cart-page').classList.toggle('cart-toggle');
-        // document.getElementById('checkout').classList.toggle('cart-toggle');
-
-        display = !display;
-        console.log(display)
-    }
-    else{
-        alert("Currently no item in cart!");
-    }
-    console.log(display);
-}
-
-// console.log(wishData);
-function wishToggle(){
-    // if(display == false){
-        document.getElementById('food-items').classList.toggle('food-items');
-        document.getElementById('category-list').classList.toggle('food-items');
-        document.getElementById('category-header').classList.toggle('toggle-category');
-        // document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
-        document.getElementById('wish-page').classList.toggle('wish-toggle');
-        document.getElementById('checkout').classList.toggle('wish-toggle');
-        display = !display;
-        console.log(display)
-    // }
-    // else{
-    //     document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
-    //     document.getElementById('cart-page').classList.toggle('cart-toggle');
-    //     document.getElementById('wish-page').classList.toggle('wish-toggle');
-    //     document.getElementById('checkout').classList.toggle('cart-toggle');
-    // }
-    
-}
-
-const logo = document.getElementById('home-rdr')
-logo.addEventListener('click', (e) => {
-    e.preventDefault
-
-})
-
-
-
 window.onresize= window.onload= function(){
     var size= window.screen.width;
-    // console.log(size)
     if(size<800){
         var cloneFoodItems= document.getElementById('food-items').cloneNode(true);
         var cloneCartPage= document.getElementById('cart-page').cloneNode(true);
@@ -111,27 +34,32 @@ window.onresize= window.onload= function(){
         addEvents()
     }
     if(size>800){
-        var cloneFoodItems= document.getElementById('food-items').cloneNode(true);
-        document.getElementById('food-items').remove();
-        document.getElementById('header').after(cloneFoodItems);
+        // var cloneFoodItems= document.getElementById('food-items').cloneNode(true);
+        // document.getElementById('food-items').remove();
+        // document.getElementById('header').after(cloneFoodItems);
 
-        var cloneCartPage= document.getElementById('cart-page').cloneNode(true);
-        document.getElementById('cart-page').remove();
-        document.getElementById('food-items').after(cloneCartPage);
+        // var cloneCartPage= document.getElementById('cart-page').cloneNode(true);
+        // document.getElementById('cart-page').remove();
+        // document.getElementById('food-items').after(cloneCartPage);
         addEvents()
     }
 }
 
 function addEvents(){
-    document.querySelectorAll('.add-to-cart').forEach(item=>{
-        item.addEventListener('click', displayItems.addToCart)
+    // console.log('called addEvents');
+    document.querySelectorAll('.add-to-cart').forEach( item => {
+        item.addEventListener('click', () => {
+            // console.log('added eventListener click');
+            displayItems.addToCart(foodItem, item);
+        })
     });
+
     document.querySelectorAll('.increase-item').forEach(item=>{
-        item.addEventListener('click', incrementItem)
+        item.addEventListener('click', displayItems.incrementItem)
     })
 
     document.querySelectorAll('.decrease-item').forEach(item=>{
-        item.addEventListener('click', decrementItem)
+        item.addEventListener('click', displayItems.decrementItem)
     })
 
     document.querySelectorAll('.add-to-wish').forEach(item=>{
@@ -142,37 +70,12 @@ function addEvents(){
     // })
 
     document.querySelectorAll('.checkout').forEach(item=>{
-        item.addEventListener('click',checkout)
+        item.addEventListener('click', displayItems.checkout)
     })
 }
 
+// document.querySelectorAll('.add-to-cart').forEach( item => console.log(item));
 
-document.getElementById('add-address').addEventListener('click',addAddress);
-
-document.getElementById('m-add-address').addEventListener('click',addAddress);
-
-
-
-function addAddress(){
-    var address= prompt('Enter your address');
-    
-    console.log(window.address);
-    if(address){
-        document.getElementById('add-address').innerText= ' ' + address;
-        // localStorage.setItem('address', JSON.parse(address))
-    }
-    else{
-        alert("Address not added")
-    }
-}
-
-// document.getElementById("order-rdr").addEventListener("click", () => {
-//     window.location='./order.html'
-// })
-
-// document.getElementById("cart-plus").addEventListener("click", () => {
-//     window.location='./order.html'
-// })
 
 
 

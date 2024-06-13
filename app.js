@@ -119,6 +119,10 @@ app.get('/profile', (req, res) => {
     res.render('./page/profile.ejs')
 })
 
+app.post('/checkout', (req,res) => {
+    // db.insertData(`insert into account activity where `)
+})
+
 app.post('/signout', (req, res) => {
     // const sid = req.headers.cookie.split(';').find((row) => row.startsWith(" sid="))?.split("=")[1];
     // console.log('/signout', req.session[`${sid}`]);
@@ -136,6 +140,7 @@ app.post('/signout', (req, res) => {
     //   console.log(sessions)
     // })
 })
+
 
 
 app.listen(port, () => {
