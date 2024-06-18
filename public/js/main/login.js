@@ -7,7 +7,7 @@
 // async function postCheck(body) { 
 //     console.log(body);
 //     try {
-//         const response = await axios.post('/rdr', { body });
+//         const response = await axios.post('/redirect', { body });
 //         console.log(response.data);
 //         window.location.href = '/';
 //     } catch (error) {
@@ -20,12 +20,13 @@ checkBtn.addEventListener('click', () => {
     const checkUsn = document.querySelector('#l-username').value
     const checkPw = document.querySelector('#l-password').value
     // console.log(checkUsn, checkPw);
-    axios.post('/check-login', {checkUsn, checkPw}) // Replace with your actual endpoint
+    axios.post('/check-login', {checkUsn, checkPw})
         .then(response => {
             // console.log(response);
             if(response.data == 'incorrect username or password'){
                 alert(response.data);
-            } else { window.location.href = '/home'}
+            } else if(response.data == "/admin") { window.location.href = '/admin' }
+            else { window.location.href = '/home'}
         })
         .catch(error => {
             console.error('Error fetching data:', error);

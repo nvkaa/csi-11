@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../layouts/head.ejs', {title: 'Dashboard', style: `/public/css/style.css`, admin: true}) %>
+</head>
+<body>
+    <div class="container" id="container">
+        <%- include('../../partials/menu.ejs', {admin: true}) %>
+
+        <%- include('../../partials/foodContainer.ejs') %>
+        
+        <%- include('../../partials/cart.ejs', {admin: true}) %>
+        
+        <%- include('../../layouts/footer.ejs') %>
+    </div>
+
+</body>
+</html>

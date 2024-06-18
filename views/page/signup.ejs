@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../layouts/head.ejs', {title: 'Account', style: `/public/css/acc.css`}) %>
+    <%- include('../layouts/head.ejs', {title: 'Account', style: `/public/css/acc.css`, admin: false}) %>
 </head>
 <body>
     <div id="login-box">
@@ -20,7 +20,7 @@
         
         <div id="signin">
             <form id="signup-form" method="post" action="/login-redirect">
-                <h5>Already have account? <a id="signinrdr" signinrdr><button type="submit">Click here to sign in </button></a></h5>
+                <h5>Already have account? <a id="signinredirect" signinredirect><button type="submit">Click here to sign in </button></a></h5>
             </form>
         </div>
     </div>

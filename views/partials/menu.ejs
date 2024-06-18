@@ -1,10 +1,39 @@
 <div id="menu">
     <a href="#" class="title">
-        <img id="home-rdr" src="/public/images/foodie-hunter.png" alt="">
+        <img id="home-redirect" src="/public/images/foodie-hunter.png" alt="">
     </a>
-    <div class="menu-item">
-        <a href="#home" home>Home</a>
-        <a href="#order" id="order-rdr">Your Orders</a>
-        <a href="#wishlist" id="dispWish">Wishlists</a>
-    </div>
+    <% if(typeof admin !== 'undefined'){ %>
+        <div class="menu-item">
+            <form action="/menu-redirect" method="post">
+                <a href="#menu" class="order-a" home>
+                    <input type="submit" value="Menu">
+                </a>
+            </form>
+            
+            <form action="/orders-redirect" method="post">
+                <a class="order-a">
+                    <input type="submit" value="Orders">
+                </a>
+            </form>
+
+            <a href="#wishlist" id="dispWish">Wishlists</a>
+        </div>
+    <% } else { %>
+        <div class="menu-item">
+
+            <form action="/home-redirect" method="post">
+                <a class="order-a" home>
+                    <input type="submit" value="Home">
+                </a>
+            </form>
+
+            <form action="/order-history-redirect" method="post">
+                <a class="order-a">
+                    <input type="submit" value="Orders">
+                </a>
+            </form>
+
+            <a href="#wishlist" id="dispWish">Wishlists</a>
+        </div>
+    <% } %>
 </div>

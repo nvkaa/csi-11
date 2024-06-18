@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../layouts/head.ejs', {title: 'Affoodable', style: `/public/css/style.css`}) %>
+    <%- include('../layouts/head.ejs', {title: 'Affoodable', style: `/public/css/style.css`, admin: false}) %>
 </head>
 <body>
     <p foodData></p>
@@ -18,7 +18,7 @@
 
         <%- include('../partials/foodContainer.ejs') %>
         
-        <%- include('../partials/cart.ejs') %>
+        <%- include('../partials/cart.ejs', {admin: false}) %>
         
         <%- include('../layouts/footer.ejs') %>
     </div>

@@ -54,6 +54,10 @@ function addEvents(){
         })
     });
 
+    // console.log('added cart toggle event listener');
+    document.getElementById('cart-plus').addEventListener('click', displayItems.cartToggle);
+    // document.getElementById('m-cart-plus').addEventListener('click', cartToggle);
+
     document.querySelectorAll('.increase-item').forEach(item=>{
         item.addEventListener('click', displayItems.incrementItem)
     })
@@ -62,9 +66,9 @@ function addEvents(){
         item.addEventListener('click', displayItems.decrementItem)
     })
 
-    document.querySelectorAll('.add-to-wish').forEach(item=>{
-        item.addEventListener('click', displayItems.addToWish)
-    })
+    // document.querySelectorAll('.add-to-wish').forEach(item=>{
+    //     item.addEventListener('click', displayItems.addToWish)
+    // })
     // document.querySelectorAll('#dispWish').forEach(item=>{
     //     item.addEventListener('click',addToWish)
     // })
@@ -169,7 +173,10 @@ accBtn.addEventListener('click', () => {
 
 
 const signoutBtn = document.querySelector('[signout]')
+// console.log(signoutBtn);
 signoutBtn.addEventListener('click', () => {
     axios.post('/signout')    
     window.location.href = '/login'
 })
+
+// alert('linked')

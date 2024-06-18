@@ -28,24 +28,7 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var square_plus = document.createElement('i');
-        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
-        square_plus.setAttribute('id',item.id)
-
-        var wish = document.createElement('i');
-        wish.setAttribute('class','fa-regular fa-star add-to-wish');
-        wish.setAttribute('id','wish');
-        var wt = document.createElement('span');
-        wt.setAttribute('class','atw');
-        wt.innerText= 'Add to wishlist';
-
-        wish.appendChild(wt)
-
-
         cardTop.appendChild(star);
-        // cardTop.appendChild(wish);
-        cardTop.appendChild(square_plus);
-
 
         var img= document.createElement('img');
         img.src=item.img;
@@ -62,7 +45,6 @@ function displayItems(foodItem){
         itemCard.appendChild(img);
         itemCard.appendChild(itemName);
         itemCard.appendChild(itemPrice);
-        itemCard.appendChild(wish);
 
         biryani.appendChild(itemCard);
         
@@ -81,22 +63,7 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var square_plus= document.createElement('i');
-        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
-        square_plus.setAttribute('id',item.id)
-
-        var wish = document.createElement('i');
-        wish.setAttribute('class','fa-regular fa-star add-to-wish');
-        wish.setAttribute('id','wish');
-        var wt = document.createElement('span');
-        wt.setAttribute('class','atw');
-        wt.innerText= 'Add to wishlist';
-
-        wish.appendChild(wt)
-
         cardTop.appendChild(star);
-        cardTop.appendChild(square_plus);
-
 
         var img= document.createElement('img');
         img.src=item.img;
@@ -113,7 +80,6 @@ function displayItems(foodItem){
         itemCard.appendChild(img);
         itemCard.appendChild(itemName);
         itemCard.appendChild(itemPrice);
-        itemCard.appendChild(wish);
         
         chicken.appendChild(itemCard)
 
@@ -131,21 +97,7 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var square_plus = document.createElement('i');
-        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
-        square_plus.setAttribute('id',item.id)
-
-        var wish = document.createElement('i');
-        wish.setAttribute('class','fa-regular fa-star add-to-wish');
-        wish.setAttribute('id','wish');
-        var wt = document.createElement('span');
-        wt.setAttribute('class','atw');
-        wt.innerText= 'Add to wishlist';
-
-        wish.appendChild(wt)
-
         cardTop.appendChild(star);
-        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -163,7 +115,6 @@ function displayItems(foodItem){
         itemCard.appendChild(img);
         itemCard.appendChild(itemName);
         itemCard.appendChild(itemPrice);
-        itemCard.appendChild(wish);
         
         paneer.appendChild(itemCard)
 
@@ -181,21 +132,7 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var square_plus = document.createElement('i');
-        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
-        square_plus.setAttribute('id',item.id)
-
-        var wish = document.createElement('i');
-        wish.setAttribute('class','fa-regular fa-star add-to-wish');
-        wish.setAttribute('id','wish');
-        var wt = document.createElement('span');
-        wt.setAttribute('class','atw');
-        wt.innerText= 'Add to wishlist';
-
-        wish.appendChild(wt)
-
         cardTop.appendChild(star);
-        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -213,8 +150,6 @@ function displayItems(foodItem){
         itemCard.appendChild(img);
         itemCard.appendChild(itemName);
         itemCard.appendChild(itemPrice);
-        itemCard.appendChild(wish);
-
         
         vegetable.appendChild(itemCard)
     
@@ -232,22 +167,7 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var square_plus = document.createElement('i');
-        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
-        square_plus.setAttribute('id',item.id)
-
-        var wish = document.createElement('i');
-        wish.setAttribute('class','fa-regular fa-star add-to-wish');
-        wish.setAttribute('id','wish');
-        var wt = document.createElement('span');
-        wt.setAttribute('class','atw');
-        wt.innerText= 'Add to wishlist';
-
-        wish.appendChild(wt)
-
         cardTop.appendChild(star);
-        cardTop.appendChild(square_plus);
-
 
         var img= document.createElement('img');
         img.src=item.img;
@@ -264,9 +184,7 @@ function displayItems(foodItem){
         itemCard.appendChild(img);
         itemCard.appendChild(itemName);
         itemCard.appendChild(itemPrice);
-        itemCard.appendChild(wish);
 
-        
         chinese.appendChild(itemCard)
         
     })
@@ -283,21 +201,7 @@ function displayItems(foodItem){
         star.setAttribute('id','rating');
         star.innerText= ' ' + item.rating;
 
-        var square_plus = document.createElement('i');
-        square_plus.setAttribute('class','fa-regular fa-square-plus add-to-cart');
-        square_plus.setAttribute('id',item.id)
-
-        var wish = document.createElement('i');
-        wish.setAttribute('class','fa-regular fa-star add-to-wish');
-        wish.setAttribute('id','wish');
-        var wt = document.createElement('span');
-        wt.setAttribute('class','atw');
-        wt.innerText= 'Add to wishlist';
-
-        wish.appendChild(wt)
-
         cardTop.appendChild(star);
-        cardTop.appendChild(square_plus);
 
 
         var img= document.createElement('img');
@@ -315,7 +219,6 @@ function displayItems(foodItem){
         itemCard.appendChild(img);
         itemCard.appendChild(itemName);
         itemCard.appendChild(itemPrice);
-        itemCard.appendChild(wish);
 
         southIndian.appendChild(itemCard)
 
@@ -343,9 +246,9 @@ function selectTaste(foodItem){
         listCard.appendChild(listImg);
         listCard.appendChild(listName);
 
-        var cloneListCard= listCard.cloneNode(true);
+        // var cloneListCard= listCard.cloneNode(true);
         categoryList.appendChild(listCard);
-        document.querySelector('.category-header').appendChild(cloneListCard)
+        // document.querySelector('.category-header').appendChild(cloneListCard)
     })
 }
 
@@ -394,7 +297,7 @@ function addToCart(foodItem, item){
 
 function cartItems(){
     var tableBody=  document.getElementById('table-body');
-    // console.log(tableBody);
+    console.log(tableBody);
     tableBody.innerHTML= '';
 
     cartData.map(item=> {
@@ -566,19 +469,22 @@ function totalAmount(){
     document.getElementById('total-price').innerText= 'Total Price : $ ' + sum;
     // document.getElementById('m-total-amount').innerText= 'Total Price : $ ' + sum;
 }
+window.onload = function(){
+    document.getElementById('cart-plus').addEventListener('click', cartToggle);
+    document.getElementById('m-cart-plus').addEventListener('click', cartToggle);
+}
 
 // document.getElementById('dispWish').addEventListener('click', wishToggle);
 
 function cartToggle(){
-    // console.log('cart toggled');
 
     // document.getElementById('food-items').classList.toggle('food-items');
     // document.getElementById('category-list').classList.toggle('food-items');
     document.getElementById('checkout').classList.toggle('cart-toggle');
 
     
-    document.getElementById('category-header').classList.toggle('toggle-category');
-    document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
+    // document.getElementById('category-header').classList.toggle('toggle-category');
+    // document.getElementById('m-cart-plus').classList.toggle('m-cart-toggle')
 
 }
 

@@ -23,8 +23,12 @@ const defaultUser = {
 
 const defSql = `INSERT INTO account (username, password) VALUES ("${defaultUser.usn}", "${defaultUser.pw}")`;
 
-function insertData(sql) {
-    const results =  pool.query(sql, (er, rs, fields) => {
+function insertData(sql, values = null) {
+    const results =  pool.query(
+      sql,
+      [...values],
+      // `INSERT INTO account (username, password)`, 
+      (er, rs, fields) => {
         if(er){return console.error('pool.query err:', er);}
         else { 
             // process.exit()
@@ -34,19 +38,30 @@ function insertData(sql) {
 
 function getData(sql) {
     return new Promise((resolve, reject) => {
-      pool.query(sql, (err, rs, fields) => {
-        if (err) {
-          reject(err); // Reject the promise with the error
-        } else {
-          resolve(rs); // Resolve the promise with the data
-        }
-      });
+        pool.query(sql, (err, rs, fields) => {
+            if (err) {
+                reject(err); // Reject the promise with the error
+            } else {
+                resolve(rs); // Resolve the promise with the data
+            }
+        });
     });
-  }
-  
+}
+
+function updateData(sql) {
+    return new Promise((resolve, reject) => {
+        pool.query(sql, (err, rs, fields) => {
+            if (err) {
+                reject(err); // Reject the promise with the error
+            } else {
+                resolve(rs); // Resolve the promise with the data
+            }
+        });
+    });
+}
 
   
 // insertData(`INSERT INTO account (username, password) VALUES ("test1", "1")`);
 // insertData(defSql);
 
-module.exports = {insertData, getData}
+module.exports = {insertData, getData, updateData}

@@ -5,11 +5,16 @@
                 <button type="submit" id="account-btn" acc-btn>
                     <i class="fa fa-user-circle"></i>
                 </button>
-                <div class="user-info hide" user-info>
-                    <button class="display-username" getusn>You are logged in as: <span id="usn">${usn}</span></button>
-                    <button class="change-password">Change password</button>
-                    <button class="signout" signout>Sign out</button>
-                </div>
+                    <div class="user-info hide" user-info>
+                    <% if(admin === true){ %>
+                        <button class="display-username" getusn>You are logged in as: <span id="usn">admin</span></button>
+                    <% } else { %>
+
+                        <button class="display-username" getusn>You are logged in as: <span id="usn">${usn}</span></button>
+                    <% } %>
+                        <button class="change-password">Change password</button>
+                        <button class="signout" signout>Sign out</button>
+                    </div>
             <!-- </form> -->
             
         </div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../layouts/head.ejs', {title: 'Affoodable | History', style: `/public/css/style.css`}) %>
+</head>
+<body>
+    
+    <!-- desktop view -->
+    <div class="container" id="container">
+        <%- include('../../partials/menu.ejs') %>
+
+        <h1>THIS IS ORDER HANDLER BOARD</h1>
+        
+        <div id="cart">
+            <div class="taste-header">
+                <div class="user">
+                    <!-- <form action="/signup" method="get"> -->
+                        <button type="submit" id="account-btn" acc-btn>
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                            <div class="user-info hide" user-info>
+                                <button class="display-username" getusn>You are logged in as: <span id="usn">admin</span></button>
+                            
+                                <button class="change-password">Change password</button>
+                                <button class="signout" signout>Sign out</button>
+                            </div>
+                    <!-- </form> -->
+                    
+                </div>
+            </div>
+        </div>
+        
+        <%- include('../../layouts/footer.ejs') %>
+    </div>
+
+
+</body>
+</html>

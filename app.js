@@ -23,7 +23,7 @@ app.use(session({
     secret: 'cat',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, maxAge: 60000},
+    cookie: { secure: false, maxAge: 3600000},
     // store: MongoStore.create({
     //     mongoUrl,
     //     collection: 'session' 
@@ -89,19 +89,39 @@ app.post('/save-register', async (req, res) => {
 app.post('/check-login', async (req,res) => {
     const sessionId = req.session.id
     const {checkUsn, checkPw} = req.body
+    
 
     const data = await db.getData(`select * from account where username = "${checkUsn}" and password = "${checkPw}"`);
-    console.log('app.89', data);
-
-    if (data.length === 0 || checkPw != data[0].password) {
-        res.send('incorrect username or password');
-    } else {
-        console.log("login succesful");
-        req.session.user = {uid: data[0].user_id, sid: sessionId, user: checkUsn}
+    
+    if(checkUsn == "adm" && checkPw == "11"){
+        req.session.admin = {sid: sessionId, user: 'admin'}
         res.cookie('sid', sessionId, { httpOnly: true });
-        res.cookie('usn', checkUsn);
-        res.redirect("/home")
+        // res.cookie('usn', checkUsn);
+        res.send('/admin')
+    } else {
+        if (data.length === 0 || checkPw != data[0].password) {
+            res.send('incorrect username or password');
+        } else {
+            console.log("login succesful");
+            req.session.user = {uid: data[0].user_id, sid: sessionId, user: checkUsn}
+            res.cookie('sid', sessionId, { httpOnly: true });
+            res.cookie('usn', checkUsn);
+            res.redirect("/home")
+        }
     }
+
+    
+})
+
+const checkAdminSession = (req, res, next) => {
+    if (!req.session.admin) {
+        return res.redirect('/login');
+      }
+      next();
+}
+
+app.get('/admin', checkAdminSession, (req, res) => {
+    res.render('./page/admin/admin.ejs')
 })
 
 const checkSession = (req, res, next) => {
@@ -111,16 +131,80 @@ const checkSession = (req, res, next) => {
     next();
 };
 
-app.get('/home',checkSession, (req, res) => {
+app.get('/home', checkSession, (req, res) => {
     res.render('./page/home.ejs');
 });
 
-app.get('/profile', (req, res) => {
-    res.render('./page/profile.ejs')
+
+
+
+
+//order page redirect
+
+//for admin:
+app.post('/orders-redirect', (req, res) => {
+    // console.log('redirecting to admin order page');
+    res.redirect('/orders')
 })
 
+app.get('/orders', checkAdminSession, (req, res) => {
+    res.render('./page/admin/orders.ejs')
+})
+
+
+//for client:
+app.post("/order-history-redirect", (req, res) => {
+    // console.log('redirecting to user order history');
+    res.redirect('/order-history')
+})
+
+app.get('/order-history', checkSession, async (req, res) => {
+    const usn = req.session.user.user
+
+    const data = await db.getData(`select * from orders where username = "${usn}"`);
+    res.render('./page/order_history.ejs', {data})
+})
+
+
+
+
+//home redirect
+
+//for admin
+app.post('/menu-redirect', (req, res) => {
+    res.redirect('/admin')
+})
+
+
+//for client:
+app.post('/home-redirect', (req, res) => {
+    res.redirect('/home')
+})
+
+
+
+// app.get('/profile', (req, res) => {
+//     res.render('./page/profile.ejs')
+// })
+
+
+
+
 app.post('/checkout', (req,res) => {
-    // db.insertData(`insert into account activity where `)
+    // console.log(req);
+    // console.log(req.session.user.user);
+    const usn = req.session.user.user
+    // console.log(typeof usn);
+    db.updateData(`UPDATE account SET status = "ongoing order" WHERE username = "${usn}"`)
+    
+    
+    // console.log(req.body);
+    const order = req.body.map( item => {
+        return {name: item.name, quantity: item.quantity}
+    })
+    // console.log(order);
+
+    db.insertData(`INSERT INTO orders (status, username, dishes) VALUES (?,?,?)`, ['pending', usn, JSON.stringify(order)])
 })
 
 app.post('/signout', (req, res) => {

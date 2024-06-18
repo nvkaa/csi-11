@@ -366,7 +366,7 @@ const foodItem= [
     {
         id: 37,
         name: 'Butter Masala Dosa',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 18,
         img: 'public/images/south indian/Butter-Masala-Dosa.png',
@@ -376,7 +376,7 @@ const foodItem= [
     {
         id: 38,
         name: 'Idli',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 20,
         img: 'public/images/south indian/idli-with-rice-flour.jpg',
@@ -386,7 +386,7 @@ const foodItem= [
     {
         id: 39,
         name: 'Masala Dosa',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 12,
         img: 'public/images/south indian/masala-dosa.jpg',
@@ -396,7 +396,7 @@ const foodItem= [
     {
         id: 40,
         name: 'Mysore Bonda',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 10,
         img: 'public/images/south indian/mysore-bonda.jpg',
@@ -406,7 +406,7 @@ const foodItem= [
     {
         id: 41,
         name: 'Onion Uttapam',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 15,
         img: 'public/images/south indian/onion-uttapam.jpg',
@@ -416,7 +416,7 @@ const foodItem= [
     {
         id: 42,
         name: 'Plain Dosa',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 40,
         img: 'public/images/south indian/plain-dosa.jpeg',
@@ -426,7 +426,7 @@ const foodItem= [
     {
         id: 43,
         name: 'Rava Uttapam',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 25,
         img: 'public/images/south indian/Rava-Uttapam.jpg',
@@ -436,7 +436,7 @@ const foodItem= [
     {
         id: 44,
         name: 'Sambhar Vada',
-        category : 'south indian',
+        category : 'south-indian',
         rating : 4.3,
         price: 34,
         img: 'public/images/south indian/sambhar-vada.jpg',

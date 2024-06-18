@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layouts/head.ejs', {title: 'Affoodable | History', style: `/public/css/style.css`, admin: false}) %>
+</head>
+<body>
+    
+    <!-- desktop view -->
+    <div class="container" id="container">
+        <%- include('../partials/menu.ejs') %>
+
+        
+        <div id="food-container">
+            <h1>THIS IS ORDER History</h1>  
+            <p class="hide" data> <%=JSON.stringify(locals.data)%> </p> 
+            <table id="doh" >
+                <thead>
+                    <td>Order ID</td>
+                    <td>Dishes</td>
+                    <td>Quantity</td>
+                    <td>Status</td>
+                    <!-- <td><button>Cancel</button></td> -->
+                </thead>
+                <tbody display-order>
+
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div id="cart">
+            <div class="taste-header">
+                <div class="user">
+                    <!-- <form action="/signup" method="get"> -->
+                        <button type="submit" id="account-btn" acc-btn>
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                            <div class="user-info hide" user-info>
+                                <button class="display-username" getusn>You are logged in as: <span id="usn">${usn}</span></button>
+                            
+                                <button class="change-password">Change password</button>
+                                <button class="signout" signout>Sign out</button>
+                            </div>
+                    <!-- </form> -->
+                    
+                </div>
+            </div>
+        </div>
+        
+        <%- include('../layouts/footer.ejs') %>
+    </div>
+
+    
+    <script type="module" src="/public/js/main/display_order.js"></script>
+</body>
+</html>

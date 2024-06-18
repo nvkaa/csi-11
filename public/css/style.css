@@ -8,6 +8,21 @@ body{background-color: whitesmoke !important;}
     font-family: 'Open Sans', sans-serif !important;
 }
 
+#order-redirect { 
+    border: none; 
+    background-color: whitesmoke;
+    color: rgb(128, 129, 129);
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    padding-inline-start: 0px;
+    /* margin: 12px 0; */
+}
+
+#order-redirect:hover {
+    background-color: rgb(250, 212, 218);
+}
+
 .fa-square-plus{
     font-size: 1.25em;
     vertical-align: -.075em;
@@ -162,6 +177,11 @@ body{
 .menu-item a:hover{
     background: rgb(250, 212, 218);
 }
+
+.order-a:hover > input {
+    background: rgb(250, 212, 218) !important;
+}
+
 #food-items{
     background: whitesmoke;
     overflow: auto;
@@ -213,9 +233,7 @@ body{
     color: rosybrown;
     padding: 0 5px;
 }
-.cart-toggle, .wish-toggle{
-    display: block;
-}
+
 .util i,.user i{
     font-size: 18px;
     margin: 0 16px;
@@ -315,9 +333,11 @@ body{
 .food-items{
     display: none;
 }
+
 .cart-toggle, .wish-toggle {
     display: none;
 }
+
 #cart-page, #wish-page{
     background: white;
     /* margin: 40px 10px;
@@ -387,7 +407,6 @@ body{
     /* align-items: flex-start; */
 }
 
-.checkout{display: block}
 
 #checkout{
     /* display: flex;
