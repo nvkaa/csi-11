@@ -14,7 +14,57 @@ signoutBtn.addEventListener('click', () => {
 })
 // alert('display order')
 
-const data = JSON.parse(document.querySelector('[data]').textContent)
-document.querySelector('[data]').remove();
+
+const foodContainer = document.querySelector('#food-container')
+foodContainer.style.margin = "0px"
+
+
+const queryString = window.location.search;
+// console.log(queryString);
+const data = JSON.parse(new URLSearchParams(queryString).get("data"));
+
+
 
 const body = document.querySelector('[display-order]')
+// console.log(data);
+data.map( item=> {
+    const row = document.createElement('tr');
+
+    const col1 = document.createElement('td')
+    col1.innerText = item.order_id
+    
+    const col2 = document.createElement('td');
+    const col3 = document.createElement('td');
+    const col4 = document.createElement('td');
+    item.dishes.forEach( dish => {
+        col2.innerHTML += `${dish.name} <br>`
+        col3.innerHTML += `${dish.quantity} <br>`
+        col4.innerHTML += `${dish.price} <br>`
+    })
+
+    const col5 = document.createElement('td');
+    col5.innerText = item.state
+
+    const col6 = document.createElement('td');
+    const btn = document.createElement('button');
+    btn.innerText = "Cancel order"
+    btn.setAttribute('id', 'cancel-btn')
+    col6.appendChild(btn)
+    
+    const nodesToAdd = [col1, col2, col3, col4, col5, col6]
+    nodesToAdd.forEach( node => row.appendChild(node) )
+
+    body.appendChild(row);
+})
+
+const cancelBtns = document.querySelectorAll("#cancel-btn")
+cancelBtns.forEach( 
+    btn => btn.addEventListener('click', () => {
+        
+    })
+)
+
+const homeBtn = document.querySelector('[home]')
+homeBtn.addEventListener('click', () => {
+    window.location.href = '/home'
+})

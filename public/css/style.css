@@ -8,6 +8,11 @@ body{background-color: whitesmoke !important;}
     font-family: 'Open Sans', sans-serif !important;
 }
 
+#display-order tr td {
+    padding: 8px;
+    height: max-content;
+}
+
 #order-redirect { 
     border: none; 
     background-color: whitesmoke;

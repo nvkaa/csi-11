@@ -608,8 +608,13 @@ function cartToggle(){
 function checkout(){
     // alert('Order Success! Pay your order at the store')
     // window.location.reload()
-    console.log('generating bill for:', cartData);
+    // console.log('generating bill for:', cartData);
     axios.post('/checkout', cartData)
+        .then( response => {
+            // console.log(response);
+            alert(response.data)
+            window.location.href = '/home'
+        })
 }
 
 

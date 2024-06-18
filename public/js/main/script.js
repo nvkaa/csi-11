@@ -160,8 +160,9 @@ searchContainer.addEventListener('focusout', (e) => {
 })
 
 const homeBtn = document.querySelector('[home]')
-homeBtn.addEventListener('click', (e) => {
+homeBtn.addEventListener('click', () => {
     window.scrollTo({top: 0, behavior: 'smooth'})
+    // axios.post('/home-redirect')
 })
 
 const accBtn = document.querySelector('[acc-btn]')
@@ -169,6 +170,18 @@ const userInfo = document.querySelector('[user-info]')
 // flag = false
 accBtn.addEventListener('click', () => {
     userInfo.classList.toggle('hide')
+})
+
+
+const historyRedirect = document.querySelector('[history]')
+historyRedirect.addEventListener('click', () => {
+    axios.post('/order-history-redirect')
+        .then( response => {
+            console.log(response.data);
+            const queryString = new URLSearchParams();
+            queryString.set("data", JSON.stringify(response.data));
+            window.location.href = `/order-history?${queryString}`
+        })
 })
 
 

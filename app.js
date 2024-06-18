@@ -153,19 +153,28 @@ app.get('/orders', checkAdminSession, (req, res) => {
 
 
 //for client:
-app.post("/order-history-redirect", (req, res) => {
+app.post("/order-history-redirect", async (req, res) => {
     // console.log('redirecting to user order history');
-    res.redirect('/order-history')
+    const usn = req.session.user.user
+    const data = await db.getData(`select * from orders where username = "${usn}"`);
+    res.send(data)
 })
 
-app.get('/order-history', checkSession, async (req, res) => {
+app.get('/order-history', checkSession, (req, res) => {
+    // const usn = req.session.user.user
+
+    // const data = await db.getData(`select * from orders where username = "${usn}"`);
+    res.render('./page/order_history.ejs')
+})
+
+
+
+// cancel order 
+app.post('/cancel-order', (req, res) => {
+    console.log(req);
     const usn = req.session.user.user
 
-    const data = await db.getData(`select * from orders where username = "${usn}"`);
-    res.render('./page/order_history.ejs', {data})
 })
-
-
 
 
 //home redirect
@@ -193,18 +202,24 @@ app.post('/home-redirect', (req, res) => {
 app.post('/checkout', (req,res) => {
     // console.log(req);
     // console.log(req.session.user.user);
-    const usn = req.session.user.user
-    // console.log(typeof usn);
-    db.updateData(`UPDATE account SET status = "ongoing order" WHERE username = "${usn}"`)
-    
-    
-    // console.log(req.body);
-    const order = req.body.map( item => {
-        return {name: item.name, quantity: item.quantity}
-    })
-    // console.log(order);
+    if(req.body.length > 0){
+        const usn = req.session.user.user
+        // console.log(typeof usn);
+        db.updateData(`UPDATE account SET state = "ongoing order" WHERE username = "${usn}"`)
+        
+        
+        // console.log(req.body);
+        const order = req.body.map( item => {
+            return {name: item.name, quantity: item.quantity, price: item.price}
+        })
+        // console.log(order);
 
-    db.insertData(`INSERT INTO orders (status, username, dishes) VALUES (?,?,?)`, ['pending', usn, JSON.stringify(order)])
+        db.insertData(`INSERT INTO orders (state, username, dishes) VALUES (?,?,?)`, ['pending', usn, JSON.stringify(order)])
+        res.send("Order sent, please check your history for order state")
+    } else {
+        res.send("Your cart is empty, please order something before checking out")
+    }
+    
 })
 
 app.post('/signout', (req, res) => {
@@ -213,7 +228,7 @@ app.post('/signout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
           console.error(err);
-          return res.status(500).send('Error logging out');
+          return res.state(500).send('Error logging out');
         }
         res.redirect('/login');
     });
