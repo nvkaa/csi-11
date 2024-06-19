@@ -19,6 +19,7 @@
     "express-session": "^1.18.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.10.0",
+    "sequelize": "^6.37.3",
     "uid-safe": "^2.1.5"
   }
 }

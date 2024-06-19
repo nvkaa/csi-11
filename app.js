@@ -171,9 +171,9 @@ app.get('/order-history', checkSession, (req, res) => {
 
 // cancel order 
 app.post('/cancel-order', (req, res) => {
-    console.log(req);
-    const usn = req.session.user.user
+    console.log(req.body);
 
+    db.deleteData(`delete from orders where order_id = ?`, [req.body.oid])
 })
 
 
@@ -213,8 +213,8 @@ app.post('/checkout', (req,res) => {
             return {name: item.name, quantity: item.quantity, price: item.price}
         })
         // console.log(order);
-
-        db.insertData(`INSERT INTO orders (state, username, dishes) VALUES (?,?,?)`, ['pending', usn, JSON.stringify(order)])
+        const date = new Date()
+        db.insertData(`INSERT INTO orders (state, username, dishes, created_at, updated_at) VALUES (?,?,?,?,?)`, ['pending', usn, JSON.stringify(order), date.toISOString().slice(0,10), date.toISOString().slice(0,19).replace("T", " ")])
         res.send("Order sent, please check your history for order state")
     } else {
         res.send("Your cart is empty, please order something before checking out")
