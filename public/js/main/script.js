@@ -162,7 +162,6 @@ searchContainer.addEventListener('focusout', (e) => {
 const homeBtn = document.querySelector('[home]')
 homeBtn.addEventListener('click', () => {
     window.scrollTo({top: 0, behavior: 'smooth'})
-    // axios.post('/home-redirect')
 })
 
 const accBtn = document.querySelector('[acc-btn]')

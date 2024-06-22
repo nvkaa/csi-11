@@ -8,20 +8,17 @@
         <div class="left">
             <h5><a href="http://localhost:3000/" id="r-home"><i class="fa-solid fa-arrow-left"> Back to home</i></a></h5>
             <h1>Sign up</h1>
-            <form id="signup-form" method="post" action="/save-register">
-                <input type="text" id="username" name="username" placeholder="Username" />
-                <input type="password" id="password" name="password" placeholder="Password" />
-                <input type="password" id="cf_password" name="cf_password" placeholder="Confirm password" />
-                
-                <button id="saveData">Sign up</button>
-            </form>
+
+            <input type="text" id="username" name="username" placeholder="Username" />
+            <input type="password" id="password" name="password" placeholder="Password" />
+            <input type="password" id="cf_password" name="cf_password" placeholder="Confirm password" />
+            
+            <button id="saveData">Sign up</button>
         </div>
         
         
         <div id="signin">
-            <form id="signup-form" method="post" action="/login-redirect">
-                <h5>Already have account? <a id="signinredirect" signinredirect><button type="submit">Click here to sign in </button></a></h5>
-            </form>
+                <h5>Already have account? <a id="signinredirect" signinredirect href="/login"><button>Click here to sign in </button></a></h5>
         </div>
     </div>
     <script type="module" src="../../public/js/main/acc.js"></script>

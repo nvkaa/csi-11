@@ -73,12 +73,14 @@ app.post("/login-redirect", (req, res) => {
 
 //signup endpoint
 app.post('/save-register', async (req, res) => {
-    const { username, password, cf_password} = req.body
-    if(username && password && username != password && password == cf_password){
-        const data = await db.getData(`select * from account where username = "${username}" and password = "${password}"`);
+    console.log(req.body);
+    const { username, password, cf_password } = req.body
+
+    if((username) && (password) && (username != password) && (password == cf_password)){
+        const data = await db.getData(`select * from account where username = "${username}"`);
         if (data.length === 0) {
-            db.insertData(`insert into account (username, password) values ("${username}","${password}")`)
-            res.redirect('/login');
+            db.insertData(`insert into account (username, password) values (?,?)`, [username, password])
+            res.send('account created successfully');
         } else {
             res.send("username is already used");
 
@@ -115,13 +117,14 @@ app.post('/check-login', async (req,res) => {
 
 const checkAdminSession = (req, res, next) => {
     if (!req.session.admin) {
+
         return res.redirect('/login');
       }
       next();
 }
 
 app.get('/admin', checkAdminSession, (req, res) => {
-    res.render('./page/admin/admin.ejs')
+    res.render('./page/admin/menu.ejs')
 })
 
 const checkSession = (req, res, next) => {
@@ -139,12 +142,15 @@ app.get('/home', checkSession, (req, res) => {
 
 
 
-//order page redirect
+//get order data
 
 //for admin:
-app.post('/orders-redirect', (req, res) => {
+app.post('/orders-redirect', async (req, res) => {
     // console.log('redirecting to admin order page');
-    res.redirect('/orders')
+    // const usn = req.session.user.user
+    const data = await db.getData(`select * from orders where state != "completed"`);
+    res.send(data)
+    // res.redirect('/orders')
 })
 
 app.get('/orders', checkAdminSession, (req, res) => {
@@ -177,17 +183,9 @@ app.post('/cancel-order', (req, res) => {
 })
 
 
-//home redirect
 
-//for admin
-app.post('/menu-redirect', (req, res) => {
-    res.redirect('/admin')
-})
-
-
-//for client:
-app.post('/home-redirect', (req, res) => {
-    res.redirect('/home')
+app.post('/next-state', (req, res) => {
+    
 })
 
 
@@ -205,7 +203,7 @@ app.post('/checkout', (req,res) => {
     if(req.body.length > 0){
         const usn = req.session.user.user
         // console.log(typeof usn);
-        db.updateData(`UPDATE account SET state = "ongoing order" WHERE username = "${usn}"`)
+        db.updateData(`UPDATE account SET state = "pending" WHERE username = "${usn}"`)
         
         
         // console.log(req.body);

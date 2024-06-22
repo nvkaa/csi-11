@@ -1,17 +1,18 @@
 const accBtn = document.querySelector('[acc-btn]')
 const userInfo = document.querySelector('[user-info]')
+console.log(accBtn, userInfo);
 // flag = false
 accBtn.addEventListener('click', () => {
     userInfo.classList.toggle('hide')
 })
 
+
 const signoutBtn = document.querySelector('[signout]')
-// console.log(signoutBtn);
 signoutBtn.addEventListener('click', () => {
-    axios.post('/signout')    
+    // axios.post('/signout')    
     window.location.href = '/login'
 })
-// alert('display order')
+
 
 
 const foodContainer = document.querySelector('#food-container')
@@ -19,7 +20,7 @@ foodContainer.style.margin = "0px"
 
 const body = document.querySelector('[display-order]')
 document.addEventListener('DOMContentLoaded', async () => {
-    await axios.post("/order-history-redirect")
+    await axios.post("/orders-redirect")
     .then( response => {
         const data = response.data.filter( item => item.state !== 'completed')
 
@@ -43,14 +44,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         
             const col6 = document.createElement('td');
             const btn = document.createElement('button');
-            btn.innerText = "Cancel order"
+            btn.innerText = "Change state"
             btn.setAttribute('class', 'cancel-btn')
             btn.addEventListener('click', async (e) => {
                 const oid = e.target.parentElement.parentElement.children[0].innerText
-                await axios.post('/cancel-order', {oid})
-                    .then( 
-                        location.reload()
-                    )
+                const state = e.target.parentElement.parentElement.children[4].innerText
+                await axios.post('/next-state', 
+                    { oid: oid, state: state }
+                ) .then ( 
+                    location.reload()
+                )
             })
             col6.appendChild(btn)
             
@@ -62,9 +65,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
 
     
-})
-
-const homeBtn = document.querySelector('[home]')
-homeBtn.addEventListener('click', () => {
-    window.location.href = '/home'
 })

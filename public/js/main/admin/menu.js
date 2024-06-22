@@ -1,4 +1,4 @@
-import * as displayItems from  '../modules/displayItemsAdmin.js'
+import * as displayItems from  '../../modules/displayItemsAdmin.js'
 
 const fetchFoodItem = await axios.get('/food-item')
 const foodItem = fetchFoodItem.data
@@ -60,13 +60,9 @@ function addEvents(){
     })
 }
 
-const homeBtn = document.querySelector('[home]')
-homeBtn.addEventListener('click', (e) => {
-    window.scrollTo({top: 0, behavior: 'smooth'})
-})
-
 const accBtn = document.querySelector('[acc-btn]')
 const userInfo = document.querySelector('[user-info]')
+console.log(accBtn, userInfo);
 // flag = false
 accBtn.addEventListener('click', () => {
     userInfo.classList.toggle('hide')
@@ -78,3 +74,4 @@ signoutBtn.addEventListener('click', () => {
     axios.post('/signout')    
     window.location.href = '/login'
 })
+

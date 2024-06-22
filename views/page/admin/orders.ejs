@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../../layouts/head.ejs', {title: 'Affoodable | History', style: `/public/css/style.css`}) %>
+    <%- include('../../layouts/head.ejs', {title: 'Affoodable | History', style: `/public/css/style.css`, admin: true}) %>
 </head>
 <body>
     
     <!-- desktop view -->
     <div class="container" id="container">
-        <%- include('../../partials/menu.ejs') %>
-
-        <h1>THIS IS ORDER HANDLER BOARD</h1>
+        <%- include('../../partials/menu.ejs', {admin: true}) %>
+            
+        <div id="food-container">
+            <h1>Undone Orders:</h1>
+            <table id="doh" >
+            <thead>
+                <tr>
+                <td>Order ID</td> <td>Dishes</td> <td>Quantity</td> <td>Price</td> <td>State</td>
+                </tr>
+            </thead>
+            <tbody id="display-order" display-order>
+            </tbody>
+            </table>
+        </div>
         
         <div id="cart">
             <div class="taste-header">
@@ -29,10 +40,13 @@
                 </div>
             </div>
         </div>
+
+
+        
         
         <%- include('../../layouts/footer.ejs') %>
     </div>
 
-
+    <script type="module" src="../../../public/js/main/admin/orders.js"></script>
 </body>
 </html>

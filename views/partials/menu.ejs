@@ -4,15 +4,13 @@
     </a>
     <% if(typeof admin !== 'undefined'){ %>
         <div class="menu-item">
-            <form action="/menu-redirect" method="post">
-                <a href="#menu" class="order-a" home>
-                    <input type="submit" value="Menu">
+                <a href="/admin#menu" class="order-a" home>
+                    Menu
                 </a>
-            </form>
             
             <form action="/orders-redirect" method="post">
-                <a class="order-a">
-                    <input type="submit" value="Orders">
+                <a href="/orders" class="order-a" orders>
+                    Orders
                 </a>
             </form>
 
@@ -21,11 +19,9 @@
     <% } else { %>
         <div class="menu-item">
 
-            <form action="/home-redirect" method="post">
                 <a class="order-a" home>
                     Home
                 </a>
-            </form>
 
             <form action="/order-history-redirect" method="post">
                 <a class="order-a" history>
