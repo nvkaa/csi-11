@@ -153,8 +153,20 @@ app.post('/orders-redirect', async (req, res) => {
     // res.redirect('/orders')
 })
 
+app.post('/complete-redirect', async (req, res) => {
+    // console.log('redirecting to admin order page');
+    // const usn = req.session.user.user
+    const data = await db.getData(`select * from orders where state = "completed"`);
+    res.send(data)
+    // res.redirect('/orders')
+})
+
 app.get('/orders', checkAdminSession, (req, res) => {
-    res.render('./page/admin/orders.ejs')
+    res.render('./page/admin/orders.ejs', {page: 'ongoing'})
+})
+
+app.get('/completed', (req, res) => {
+    res.render('./page/admin/orders.ejs', {page: 'completed'})
 })
 
 
@@ -183,9 +195,13 @@ app.post('/cancel-order', (req, res) => {
 })
 
 
-
-app.post('/next-state', (req, res) => {
-    
+const states = ["pending", "in preparation", "delivering", "awaiting payment", "completed"]
+app.post("/next-state", (req, res) => {
+    console.log(req.body);
+    const {oid, state} = req.body
+    const newStateInd = states.indexOf(state) + 1
+    const newState = states[newStateInd]
+    db.updateData(`update orders set state = (?) where order_id = (?)`, [newState, parseInt(oid)])
 })
 
 
@@ -203,7 +219,7 @@ app.post('/checkout', (req,res) => {
     if(req.body.length > 0){
         const usn = req.session.user.user
         // console.log(typeof usn);
-        db.updateData(`UPDATE account SET state = "pending" WHERE username = "${usn}"`)
+        db.updateData(`UPDATE account SET state = "pending" WHERE username = ?`, [usn])
         
         
         // console.log(req.body);

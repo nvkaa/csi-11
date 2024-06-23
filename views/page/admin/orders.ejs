@@ -10,12 +10,25 @@
         <%- include('../../partials/menu.ejs', {admin: true}) %>
             
         <div id="food-container">
-            <h1>Undone Orders:</h1>
+            
+                <% if(locals.page == 'ongoing'){ %>
+                    <h1>Ongoing Orders</h1>
+                <% } else if(locals.page == 'completed') {%>
+                    <h1>Completed Orders</h1>
+                <% } %>
+            
             <table id="doh" >
             <thead>
-                <tr>
-                <td>Order ID</td> <td>Dishes</td> <td>Quantity</td> <td>Price</td> <td>State</td>
-                </tr>
+                <% if(locals.page == 'ongoing'){ %>
+                    <tr>
+                        <td>Order ID</td> <td>Dishes</td> <td>Quantity</td> <td>Price</td> <td>State</td>
+                    </tr>
+                <% } else if(locals.page == 'completed') {%>
+                    <tr>
+                        <td>Order ID</td> <td>Dishes</td> <td>Quantity</td> <td>Price</td> <td>State</td> <td>Total price</td> 
+                    </tr>
+                <% } %>
+                
             </thead>
             <tbody id="display-order" display-order>
             </tbody>
@@ -47,6 +60,11 @@
         <%- include('../../layouts/footer.ejs') %>
     </div>
 
-    <script type="module" src="../../../public/js/main/admin/orders.js"></script>
+
+    <% if(locals.page == 'ongoing'){ %>
+        <script type="module" src="../../../public/js/main/admin/orders.js"></script>
+    <% } else if(locals.page == 'completed') {%>
+        <script type="module" src="../../../public/js/main/admin/completed.js"></script>
+    <% } %>
 </body>
 </html>

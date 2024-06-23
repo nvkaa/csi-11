@@ -4,17 +4,19 @@
     </a>
     <% if(typeof admin !== 'undefined'){ %>
         <div class="menu-item">
-                <a href="/admin#menu" class="order-a" home>
-                    Menu
-                </a>
+            <a href="/admin#menu" class="order-a" home>
+                Menu
+            </a>
             
-            <form action="/orders-redirect" method="post">
-                <a href="/orders" class="order-a" orders>
-                    Orders
-                </a>
-            </form>
+            <a href="/orders" class="order-a" orders>
+                Ongoing Orders
+            </a>
 
-            <a href="#wishlist" id="dispWish">Wishlists</a>
+            <a href="/completed" class="order-a" orders>
+                Completed Orders
+            </a>
+
+            <a href="#" id="dispWish">Wishlists</a>
         </div>
     <% } else { %>
         <div class="menu-item">

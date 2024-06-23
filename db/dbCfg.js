@@ -65,15 +65,19 @@ function getData(sql) {
     });
 }
 
-function updateData(sql) {
+function updateData(sql, values = null) {
     return new Promise((resolve, reject) => {
-        pool.query(sql, (err, rs, fields) => {
-            if (err) {
-                reject(err); // Reject the promise with the error
-            } else {
-                resolve(rs); // Resolve the promise with the data
+        pool.query(
+            sql,
+            [...values],
+            (err, rs, fields) => {
+                if (err) {
+                    reject(err); // Reject the promise with the error
+                } else {
+                    resolve(rs); // Resolve the promise with the data
+                }
             }
-        });
+        );
     });
 }
 
