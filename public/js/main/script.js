@@ -101,9 +101,23 @@ for(let i = 0; i<foodItem.length; i++){
     srs.classList.add('srs')
     srs.classList.add('hide')
 
+    srs.addEventListener('click', (e) => {
+        const displayContent = e.target.textContent
+        displayChoice(displayContent)
+    })
+
     searchResult.appendChild(srs)
 }
 
+function displayChoice(displayContent){
+    const a = document.querySelectorAll('.srs')
+    a.forEach( item => {
+        if(item.innerHTML !== displayContent){
+            item.classList.add('hide')
+        }
+    })
+
+}
 
 
 const search = document.querySelector('[search]')
